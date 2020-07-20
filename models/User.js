@@ -23,13 +23,14 @@ const userSchema = mongoose.Schema({
         default: 0
     },
     image: String,
-    token: {
+    token: {        // 유효성 관리
         type: String
     },
-    tokenExp: {
+    tokenExp: {     // 토큰이 사용할수 있는 기간
         type: Number
     }
 
 })
+
 const User = mongoose.model('User', userSchema)
 module.exports = { User }
