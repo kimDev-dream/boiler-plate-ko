@@ -32,7 +32,7 @@ app.post('/api/users/register', (req, res) => {
     })
 })
 
-app.post('/api/users//login', (req, res) => {
+app.post('/api/users/login', (req, res) => {
     // 1. 요청된 이메일, DB 존재여부 확인
     User.findOne({ email: req.body.email }, (err, user) => {
 
@@ -73,6 +73,17 @@ app.post('/api/users/auth', auth, (req, res) => {
         lastname: req.user.lastname,
         role: req.user.role,
         image: req.user.image
+    })
+})
+
+app.get('/api/users/logout', auth, (req, res) => {
+    User.findOneAndUpdate({ _id: req.user._id  },
+        { token: ""}
+        , (err, user) => {
+        if(err) return res.json({ success: false, err });
+        return res.status(200).send({
+            success: true
+        })
     })
 })
 
