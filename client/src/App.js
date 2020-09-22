@@ -9,6 +9,7 @@ import {
 import LandingPage from './components/views/LandingPage/LandingPage'
 import LoginPage from './components/views/LoginPage/LoginPage'
 import RegisterPage from './components/views/RegisterPage/RegisterPage'
+import Auth from './hoc/auth'
 
 function App() {
   return (
@@ -25,9 +26,9 @@ function App() {
         <Switch>
           {/* exact 의 기능 -> Router가  부분적으로만 닮아도  같은거라고 인식해버림, 
           정확하게 일치하는 컴포넌트로 이동시켜 주기 위함. */}
-          <Route exact path="/" component={ LandingPage } />  
-          <Route exact path="/login" component={ LoginPage } />
-          <Route exact path="/register" component={ RegisterPage } />
+          <Route exact path="/" component={ Auth(LandingPage, null )  } />
+          <Route exact path="/login" component={ Auth(LoginPage, false) } />
+          <Route exact path="/register" component={ Auth(RegisterPage, false)} />
         </Switch>
       </div>
     </Router>
